@@ -32,11 +32,12 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-group :production do
+group :development do
   gem 'annotate'
   gem 'pry-rails'
   gem 'better_errors'
   gem 'binding_of_caller'
+  gem 'letter_opener'
 end
 
 # Use ActiveModel has_secure_password

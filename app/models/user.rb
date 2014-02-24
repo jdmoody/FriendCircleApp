@@ -16,7 +16,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :password_digest, presence: true, uniqueness: true
-  validates :session_token, presence: true, uniquness: true
+  validates :session_token, presence: true, uniqueness: true
+
+  has_many :password_resets
 
   before_validation :ensure_session_token
 
@@ -28,6 +30,7 @@ class User < ActiveRecord::Base
     if unencrypted_password.present?
       @password = unencrypted_password
       self.password_digest = BCrypt::Password.create(unencrypted_password)
+    end
   end
 
   def is_password?(unencrypted_password)
@@ -39,6 +42,12 @@ class User < ActiveRecord::Base
     self.session_token = self.class.generate_session_token
     self.save!
     self.session_token
+  end
+
+  def self.find_by_credentials(params)
+    email, password = params[:email], params[:password]
+    user = User.find_by(email: email)
+    user && user.is_password?(password) ? user : nil
   end
 
   private
