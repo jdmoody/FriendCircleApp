@@ -11,6 +11,8 @@
 #
 
 class Post < ActiveRecord::Base
+  validates :body, presence: true
+
   belongs_to :author, class_name: "User"
   has_many :links
   has_many :post_shares
