@@ -1,15 +1,15 @@
 # == Schema Information
 #
-# Table name: friend_circle_memberships
+# Table name: post_shares
 #
 #  id               :integer          not null, primary key
-#  member_id        :integer
+#  post_id          :integer
 #  friend_circle_id :integer
 #  created_at       :datetime
 #  updated_at       :datetime
 #
 
-class FriendCircleMembership < ActiveRecord::Base
+class PostShare < ActiveRecord::Base
+  belongs_to :post
   belongs_to :friend_circle
-  belongs_to :member, class_name: "User"
 end

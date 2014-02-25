@@ -21,6 +21,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def feed
+    @user = User.find(params[:id])
+    @posts = @user.shared_posts.includes(:links)
+  end
+
   private
   def user_params
     params.require(:user).permit(:email, :password)

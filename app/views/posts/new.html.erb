@@ -1,0 +1,40 @@
+<h2>Make a New Post , <%= @user.email %>!</h2>
+
+<form action="<%= user_posts_url(@user) %>" method="post"
+      accept-charset="utf-8">
+
+  <input type="hidden" name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
+  <label>Title:
+    <input type="text" name="post[title]"
+           value="<%= @post.title %>">
+  </label>
+  <br>
+
+  <label>Body:<br>
+    <textarea name="post[body]"><%= @post.body %></textarea>
+  </label>
+
+  <hr>
+  <label>Friend Circles:</label><br>
+  <% @friend_circles.each do |friend_circle| %>
+    <label>
+        <input type="checkbox" name="post[friend_circle_ids][]"
+               value="<%= friend_circle.id %>">
+        <%= friend_circle.name %>
+    </label>
+    <br>
+  <% end %>
+  <hr>
+
+  <label>Links:</label><br>
+  <% @post.links.each_with_index do |link, idx| %>
+    <label>
+      Link URL <%= idx + 1 %>
+      <input type="text" name="links[<%= idx %>][url]">
+    </label><br>
+  <% end %>
+
+  <p><input type="submit" value="Create Post"></p>
+</form>

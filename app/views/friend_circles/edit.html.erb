@@ -1,0 +1,7 @@
+<h2>Edit, <%= @friend_circle.name %>!</h2>
+<form action="<%= friend_circle_url(@user) %>" method="post"
+      accept-charset="utf-8">
+      <input type="hidden" name="_method" value="patch">
+  <%= render 'form', users: @users, friend_circle: @friend_circle %>
+  <p><input type="submit" value="Update <%= @friend_circle.name %>!"></p>
+</form>

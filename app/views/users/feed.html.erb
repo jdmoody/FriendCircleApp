@@ -1,0 +1,10 @@
+<h2>Heya, this is your feed <%= @user.email %></h2>
+
+<% @posts.each do |post| %>
+  <h3><%= post.title %></h3>
+  <p><%= post.body %></p>
+  <h4>Links</h4>
+  <% post.links.each do |link| %>
+    <p><%= link.url %></p>
+  <% end %>
+<% end %>

@@ -1,0 +1,6 @@
+<h2>Make a New Friend Circle, <%= @user.email %>!</h2>
+<form action="<%= user_friend_circles_url(@user) %>" method="post"
+      accept-charset="utf-8">
+  <%= render 'form', users: @users, friend_circle: @friend_circle %>
+  <p><input type="submit" value="Create Friend Circle!"></p>
+</form>

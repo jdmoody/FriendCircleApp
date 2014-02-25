@@ -1,0 +1,21 @@
+<% friend_circle_members = friend_circle.members.map(&:id) %>
+<input type="hidden" name="authenticity_token"
+       value="<%= form_authenticity_token %>">
+
+<label>Name:
+  <input type="text" name="friend_circle[name]"
+         value="<%= friend_circle.name %>">
+</label>
+<hr>
+<input type="hidden" name="friend_circle[member_ids][]" value="">
+
+<% users.each do |user| %>
+  <label>
+      <input type="checkbox" name="friend_circle[member_ids][]"
+      <%= friend_circle_members.include?(user.id) ? "checked" : nil %>
+             value="<%= user.id %>">
+      <%= user.email %>
+  </label>
+  <br>
+<% end %>
+

@@ -1,0 +1,9 @@
+<h2><%= @post.title %></h2>
+<p>
+  <%= @post.body %>
+</p>
+<ul>
+  <% @post.links.each do |link| %>
+    <li><%= link.url %></li>
+  <% end %>
+</ul>

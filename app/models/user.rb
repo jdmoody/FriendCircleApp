@@ -13,6 +13,8 @@
 class User < ActiveRecord::Base
   attr_reader :password
 
+  before_validation :ensure_session_token
+
   validates :email, presence: true, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :password_digest, presence: true, uniqueness: true
@@ -20,7 +22,22 @@ class User < ActiveRecord::Base
 
   has_many :password_resets
 
-  before_validation :ensure_session_token
+  has_many :friend_circles, foreign_key: :owner_id
+
+  has_many(
+    :memberships,
+    class_name: "FriendCircleMembership",
+    foreign_key: :member_id)
+
+  has_many(
+    :shared_friend_circles,
+    through: :memberships,
+    source: :friend_circle
+  )
+
+  has_many :shared_posts, through: :shared_friend_circles, source: :posts
+
+  has_many :posts, foreign_key: :author_id
 
   def self.generate_session_token
     SecureRandom::urlsafe_base64
