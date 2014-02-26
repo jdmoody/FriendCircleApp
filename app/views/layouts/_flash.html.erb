@@ -1,5 +1,9 @@
 <% if flash %>
-  <% flash.each do |_, value| %>
-    <p><%= value %></p>
+  <% flash.each do |type, messages| %>
+  <ul>
+    <% messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
   <% end %>
 <% end %>

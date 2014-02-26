@@ -3,3 +3,5 @@
 <% @friend_circle.members.each do |member| %>
   <p> <%= member.email %> </p>
 <% end %>
+
+<%= link_to "Back to User Profile", user_url(current_user) %>

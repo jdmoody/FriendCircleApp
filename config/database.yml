@@ -19,7 +19,6 @@ development:
   encoding: unicode
   database: SocialThing_development
   pool: 5
-  username: appacademy
   host: localhost
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -48,13 +47,9 @@ test:
   encoding: unicode
   database: SocialThing_test
   pool: 5
-  username: appacademy
-  password:
 
 production:
   adapter: postgresql
   encoding: unicode
   database: SocialThing_production
   pool: 5
-  username: appacademy
-  password:

@@ -1,4 +1,5 @@
 SocialThing::Application.routes.draw do
+  root 'sessions#new'
 
   resources :users do
     get 'feed', on: :member

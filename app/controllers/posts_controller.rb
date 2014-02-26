@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   before_filter :set_user, only: [:new, :create]
   def show
     @post = Post.find(params[:id])
-    render :show
+    render 'show'
   end
 
   def new
@@ -10,16 +10,20 @@ class PostsController < ApplicationController
     3.times do
       @post.links.build
     end
+    render 'new'
   end
 
   def create
     @post = @user.posts.new(post_params)
     @post.links.new(link_params)
     if @post.save
-      redirect_to @post, notice: "New Post Created!"
+      redirect_to @post, notice: ["New Post Created!"]
     else
-      flash[:errors] = @post.errors.full_messages
-      render :new
+      flash.now[:errors] = @post.errors.full_messages
+      3.times do
+        @post.links.build
+      end
+      render 'new'
     end
   end
 
