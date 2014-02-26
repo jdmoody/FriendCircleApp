@@ -1,4 +1,21 @@
 <h2> Hello, <%= current_user.email %>! </h2>
 <%= link_to "Check Your Feed", feed_user_url %><br>
+
+<h3>Your Posts:</h3>
+<% @posts.each do |post| %>
+  <h4>
+    <%= post.title %> 
+    (<%= "Shared With: " %>
+      <% names = post.friend_circles.map do |friend_circle|
+        friend_circle.name
+      end %> <%= names.join(", ")%>)
+  </h4>
+    <%= post.body %>
+  <h5>Links</h5>
+  <% post.links.each do |link| %>
+    <%= link.url %>
+  <% end %>
+<% end %><br>
+
 <%= link_to "Create a new FriendCircle!", new_user_friend_circle_url(current_user) %><br>
 <%= link_to "Create a new Post!", new_user_post_url(current_user) %>

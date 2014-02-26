@@ -21,7 +21,7 @@ class FriendCirclesController < ApplicationController
     @friend_circle = @user.friend_circles.new(friend_circle_params)
 
     if @friend_circle.save
-      redirect_to @friend_circle, notice: "New Friend Circle Created!"
+      redirect_to @friend_circle, notice: ["New Friend Circle Created!"]
     else
       flash[:errors] = @friend_circle.errors.full_messages
       render 'new'
@@ -34,7 +34,7 @@ class FriendCirclesController < ApplicationController
 
   def update
     if @friend_circle.update_attributes(friend_circle_params)
-      redirect_to @friend_circle, notice: "Friend Circle Updated!"
+      redirect_to @friend_circle, notice: ["Friend Circle Updated!"]
     else
       flash[:errors] = @friend_circle.errors.full_messages
       render 'edit'

@@ -9,10 +9,10 @@ class SessionsController < ApplicationController
 
     if @user
       login(@user)
-      flash[:success] = "You signed in :)"
+      flash[:success] = ["You signed in!"]
       redirect_to @user
     else
-      flash.now[:errors] = "Uh oh, wrong credentials :("
+      flash.now[:errors] = ["Invalid username/password combination"]
       render :new
     end
   end

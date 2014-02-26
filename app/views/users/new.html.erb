@@ -1,4 +1,4 @@
-<h2>Sign Up</h2>
+<h1>Sign Up</h1>
 
 <form action="<%= users_url %>" method="post" accept-charset="utf-8">
   <input
@@ -15,6 +15,28 @@
       Password
       <input type="password" name="user[password]">
     </label>
+    
+    <h2>Make Your First Post!</h2>
+    
+      <label>Title:
+        <input type="text" name="post[title]"
+               value="<%= @post.title %>">
+      </label>
+      <br>
+
+      <p>
+      <label>Body:<br>
+        <textarea name="post[body]"><%= @post.body %></textarea>
+      </label>
+      </p>
+
+      <label>Links:</label><br>
+      <% @post.links.each_with_index do |link, idx| %>
+        <label>
+          Link URL <%= idx + 1 %>
+          <input type="text" name="links[<%= idx %>][url]">
+        </label><br>
+      <% end %>
 
   <p><input type="submit" value="Sign Up"></p>
 </form>

@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_filter :set_user, only: [:new, :create]
+  
   def show
     @post = Post.find(params[:id])
     render 'show'
