@@ -40,6 +40,8 @@ group :development do
   gem 'letter_opener'
 end
 
+gem 'kaminari'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2', require: 'bcrypt'
 
